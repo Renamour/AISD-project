@@ -187,14 +187,14 @@ try:
     time_next = time.time()
     print_matrix(FT,"F^T",time_next-time_prev)
 
-    for x in range(row_q):      # K*F^T
+    for x in range(row_q):     # K*F^T
         for y in range(row_q):
             FT[x][y] = K*FT[x][y]
             
     time_prev = time_next
     time_next = time.time()
     print_matrix(FT,"K*F^T",time_next-time_prev)
-    for x in range(row_q):      # ((K*A^T)*A)-K*F^T
+    for x in range(row_q):     # ((K*A^T)*A)-K*F^T
         for y in range(row_q):
             AF[x][y] = AF[x][y]-FT[x][y]            
     time_prev = time_next
