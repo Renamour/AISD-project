@@ -1,0 +1,7 @@
+Введите путь к файлу: text.txt
+So, I beg you, just stop all the meaningless fights!
+Many times I have proven this speech, and to me, the one thing that is better than heights, is the height that I have not yet reached!
+Самое длинное слово = meaningless
+Длина cамого длинного слова в тексте =  11 cимволов
+Начальная позиция или первый индекс самого длинного слова: 33
+Время работы:  0.078125 секунд
