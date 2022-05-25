@@ -1,4 +1,4 @@
-Введите путь к файлу: text.txt
+Введите путь к файлу: test.txt
 So, I beg you, just stop all the meaningless fights!
 Many times I have proven this speech, and to me, the one thing that is better than heights, is the height that I have not yet reached!
 Самое длинное слово = meaningless
