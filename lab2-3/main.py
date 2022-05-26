@@ -31,6 +31,7 @@ try:
                             print("Начальная позиция или первый индекс самого длинного слова:", pozition)
                             print("Время работы: ", time.process_time(), "секунд")
                         else:
+                            print("Это не текст. Введите английский текст")
                             engl_flag = False
                             work_buffer = ""
                     buffer = f.read(max_buffer_len)   # читаем очередной блок
