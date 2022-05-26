@@ -1,7 +1,14 @@
-Введите путь к файлу: text.txt
+ТЕСТ 1
 So, I beg you, just stop all the meaningless fights!
 Many times I have proven this speech, and to me, the one thing that is better than heights, is the height that I have not yet reached!
+-----Результат программы -----
 Самое длинное слово = meaningless
 Длина cамого длинного слова в тексте =  11 cимволов
 Начальная позиция или первый индекс самого длинного слова: 33
 Время работы:  0.078125 секунд
+
+ТЕСТ 2 
+There are four types of schools in the English and Welsh education system - nursery. Primary, secondary and private schools. Scotland has its own education system, which is different. Children start school at the age of five, but there is some free nursery-school education before that age. The state nursery schools are not for all. They are for some families, for example for families with only one parent. In most areas there are private nursery schools. Parents who want their children to go to nursery school pay for their children under 5 years old to go to these private nursery schools.
+-----Результат программы -----
+Превышен максимальный размер буфера
+Измените файл или добавьте корректный файл в директорию
