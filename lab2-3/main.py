@@ -1,42 +1,46 @@
+import os
 import re
-import time
 max_buffer_len = 100  # максимальный размер рабочего буфера
-buffer_len = 1          # размер буфера чтения
-work_buffer = ""        # рабочий буфер
-engl_flag = False
+buffer_len = 1  # размер буфера чтения
+work_buffer = ""  # рабочий буфер
+engl_flag = False  # флаг англ. текста
 try:
-    with open("text.txt", "r", encoding="utf-8") as f:  # открываем файл
-        buffer = f.read(buffer_len)  # читаем первый блок
+    with open("text.txt", "r") as file:  # открываем файл
+        print("\n-----Результат работы программы-----\n")
+        buffer = file.read(buffer_len)  # читаем первый блок
         if not buffer:  # если файл пустой
-            print("Файл пустой.\nОтредактируйте файл или добавьте не пустой файл text.txt.\n")
-        else:
-            while buffer and len(work_buffer) < max_buffer_len:
-                    if 'a' <= buffer <= 'z' or 'A' <= buffer <= 'Z':
-                        work_buffer += buffer
-                        engl_flag = True
-                    if buffer.find(".") >= 0 or buffer.find("!") >= 0 or buffer.find("?") >= 0:  # Если символ- окончание предложения
-                        if engl_flag:  # Если в предложении был английский текст
-                            print(work_buffer)
-                            s=work_buffer
-                            s = re.sub(r'[^\w\s]', ' ', s)
-                            words = dict()
-                            for word in s.split(" "):
-                                words[len(word)] = word
-                            biggestWord = words[
-                                max(words)]
-                            count = len(biggestWord)
-                            pozition = buffer.find(biggestWord)
-                            print("Самое длинное слово =", biggestWord)
-                            print("Длина cамого длинного слова в тексте = ", count, "cимволов")
-                            print("Начальная позиция или первый индекс самого длинного слова:", pozition)
-                            print("Время работы: ", time.process_time(), "секунд")
-                        else:
-                            print("Это не текст. Введите английский текст")
-                            engl_flag = False
-                            work_buffer = ""
-                    buffer = f.read(max_buffer_len)   # читаем очередной блок
-            if len(work_buffer) >= max_buffer_len:
-                       print("Превышен максимальный размер буфера\nИзмените файл или добавьте корректный файл в директорию")
+            print("\nФайл text.txt в директории проекта пустой.\nДобавьте не пустой файл в директорию или переименуйте существующий *.txt файл.")
+        while buffer:  # пока файл не пустой
+            if buffer >= 'a' and buffer <= 'z':  # обрабатываем текущий блок
+                engl_flag = True
+                work_buffer += buffer
+            else:
+                work_buffer += buffer
+                if buffer >= 'A' and buffer <= 'Z':
+                    engl_flag = True
+            if buffer.find(".") >= 0 or buffer.find("!") >= 0 or buffer.find("?") >= 0:  # Если символ- окончание предложения
+                if engl_flag:  # Если в предложении был английский текст
+                    print(work_buffer)  # Печатаем предложение и готовим новый цикл
+                    s = work_buffer
+                    s = re.sub(r'[^\w\s]', '', s)  # удаляем знаки препинания из текста
+                    words = dict()
+                    for word in s.split(" "): # разбиваем строку на слова
+                        words[len(word)] = word
+                    biggestWord = words[max(words)] # находим слово с наибольшим количеством английских символов
+                    count = len(biggestWord)  # подсчет количества символов в слове
+                    pozition = work_buffer.find(biggestWord)  # поиск начального индекса длинного слова
+                    engl_flag = False
+                work_buffer = ""
+                print("Самое длинное слово =", biggestWord)
+                print("Длина cамого длинного слова в тексте = ", count, "cимволов")
+                print("Начальная позиция или первый индекс самого длинного слова:", pozition)
+            buffer = file.read(buffer_len)  # читаем очередной блок
+
+        if len(work_buffer) > 0:  # Если буфер переполнен и нет окончания предложения
+            print(
+                "\nХвост файла text.txt не содержит знаков окончания предложения \nОткорректируйте файл text.txt в директории или переименуйте существующий *.txt файл.")
+
 except FileNotFoundError:
-    print("Файл text.txt в директории проекта не обнаружен.\nДобавьте файл в директорию или переименуйте существующий *.txt файл.")
-    print("Время работы программы: ", time.process_time(), "секунд")
+    print(
+        "\nФайл text.txt в директории проекта не обнаружен.\nДобавьте файл в директорию или переименуйте существующий *.txt файл.")
+
