@@ -5,7 +5,7 @@ buffer_len = 1  # размер буфера чтения
 work_buffer = ""  # рабочий буфер
 engl_flag = False  # флаг англ. текста
 try:
-    with open("text1.txt", "r") as file:  # открываем файл
+    with open("text.txt", "r") as file:  # открываем файл
         print("\n-----Результат работы программы-----\n")
         buffer = file.read(buffer_len)  # читаем первый блок
         if not buffer:  # если файл пустой
