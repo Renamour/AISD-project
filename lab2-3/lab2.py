@@ -5,7 +5,7 @@ buffer_len = 1  # размер буфера чтения
 work_buffer = ""  # рабочий буфер
 engl_flag = False  # флаг англ. текста
 try:
-    with open("text.txt", "r") as file:  # открываем файл
+    with open("text1.txt", "r") as file:  # открываем файл
         print("\n-----Результат работы программы-----\n")
         buffer = file.read(buffer_len)  # читаем первый блок
         if not buffer:  # если файл пустой
@@ -18,7 +18,7 @@ try:
                 work_buffer += buffer
                 if buffer >= 'A' and buffer <= 'Z':
                     engl_flag = True
-            if buffer.find(".") >= 0 or buffer.find("!") >= 0 or buffer.find("?") >= 0:  # Если символ- окончание предложения
+            if len(work_buffer) >= max_buffer_len and buffer.find(" ") >= 0 or buffer.find(".")>= 0 or buffer.find("!") >= 0 or buffer.find("?") >= 0:
                 print(work_buffer)
                 if engl_flag:  # Если в предложении был английский текст
                     s = work_buffer
@@ -31,9 +31,8 @@ try:
                     pozition = work_buffer.find(biggestWord)  # поиск начального индекса длинного слова
                     print("Самое длинное слово =", biggestWord)
                     print("Длина cамого длинного слова в тексте = ", count, "cимволов")
-                    print("Начальная позиция или первый индекс самого длинного слова:", pozition)
+                    print("Начальная позиция самого длинного слова:", pozition+1)
                 else :
-                    print("Нет латинских символов.")
                     engl_flag = False
                 work_buffer = ""
             buffer = file.read(buffer_len)  # читаем очередной блок
